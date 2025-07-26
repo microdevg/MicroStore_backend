@@ -20,12 +20,12 @@ export async function getById(req, res) {
 }
 
 export async function create(req, res) {
-  const { id, name, price } = req.body;
-  if (!id || !name || !price) {
+  const {  name, price } = req.body;
+  if ( !name || !price) {
     return res.status(400).json({ error: 'Datos incompletos' });
   }
 
-  await createProduct({ id, name, price });
+  await createProduct({  name, price });
   res.status(201).json({ message: 'Producto creado' });
 }
 

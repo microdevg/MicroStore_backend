@@ -1,16 +1,15 @@
 import express from 'express';
-import {
-  getAll,
-  getById,
-  create,
-  remove
-} from '../controllers/products.controller.js';
+import * as productController from '../controllers/products.controller.js'; 
+import * as authService from '../services/auth.service.js';
 
 const router = express.Router();
 
-router.get('/api/products', getAll);
-router.get('/api/products/:id', getById);
-router.post('/api/products/create', create);
-router.delete('/api/products/:id', remove);
+router.get('/', productController.getAll); // Obtener todos los productos
+router.get('/:id', productController.getById); // Obtener un producto por ID
+
+
+router.post('/', authService.verifyToken, productController.create);
+
+router.delete('/:id', authService.verifyToken, productController.remove);
 
 export default router;

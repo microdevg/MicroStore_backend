@@ -14,10 +14,6 @@ app.use(express.json());
 app.use(productRoutes);
 
 
-app.get('/', (req, res) => {
-  res.send('Página inicial');
-});
-
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
 });
